@@ -15,6 +15,7 @@ endif
 
 sun_tests: test.exe
 	./run_pos_tests.sh
+	$(RM) *.deleteme
 
 test.exe: $(TOBJ)
 	$(CC) -o $@ $^
