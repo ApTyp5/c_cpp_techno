@@ -1,6 +1,9 @@
 CC := gcc
-CLF := -Wall -Werror -std=c99 -pedantic
-OBJ := main.o
+CFL := -Wall -Werror -std=c99 -pedantic
+OBJ := proc_tools.o io_tools.o
+COBJ := main.o $(OBJ) 
+TOBJ := test_main.o $(OBJ)
+
 
 
 ifeq ($(mod),db)
@@ -10,13 +13,17 @@ else
 endif
 
 
+sun_tests: test.exe
+	./run_pos_tests.sh
 
+test.exe: $(TOBJ)
+	$(CC) -o $@ $^
 
 app.exe: $(OBJ)
 	$(CC) -o $@ $^
 
 %.o: %.c
-	$(CC) $(CFL) -c $< 
+	$(CC) $(CFL) $(OGFL) -c $< 
 
 clean:
 	$(RM) *.exe *.o
