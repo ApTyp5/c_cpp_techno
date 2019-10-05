@@ -13,14 +13,15 @@ else
 endif
 
 
-sun_tests: test.exe
+
+app.exe: $(COBJ)
+	$(CC) -o $@ $^
+
+run_tests: test.exe
 	./run_pos_tests.sh
 	$(RM) *.deleteme
 
 test.exe: $(TOBJ)
-	$(CC) -o $@ $^
-
-app.exe: $(OBJ)
 	$(CC) -o $@ $^
 
 %.o: %.c

@@ -1,7 +1,6 @@
 #include "proc_tools.h"
 #include "io_tools.h"
 
-/*
 int process_data(int arr[], size_t len)
 {
 	if ((len = longest_arithm_seq(&arr, len)) == 0)
@@ -9,12 +8,11 @@ int process_data(int arr[], size_t len)
 		return NO_ARITHM_SEQ;
 	}
 
-	show_arr("Самая длинная арифметическая последовательнoсть: ", 
-			arr, len);
+	show_arr("Aрифметическая последовательнoсть"
+			 " с наибольшей длиной:\n", arr, len);
 
 	return HAPPY_END;
 }
-*/
 
 
 void try_inc_seq(size_t *max_seq_len, int *arr[], 
