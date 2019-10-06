@@ -1,5 +1,9 @@
-#!/bin/bash
+#!/usr/bin/bash
 
+
+
+
+leak_check="valgrind --leak-check=full -q"
 input_tests="./tests_in"
 output_tests="./tests_out"
 test_template="test_"
@@ -13,7 +17,7 @@ stop_num=7
 for (( i = $start_num; i < $stop_num; i++ ))
 do
 	echo -n "Test" $i ":"
-	$exe < $input_tests/$test_template$i > $result_file
+	$leak_check $exe < $input_tests/$test_template$i > $result_file
 
 	
 	if cmp $output_tests/$test_template$i $result_file
