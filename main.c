@@ -28,6 +28,7 @@ void show_message(int rc)
 			printf("В данном массиве слишком мало элементов "
 					"для арифметической последовательности.\n");
 			break;
+
 		case INPUT_ERR:
 			printf("Неверный ввод. Ожидается неотриательная "
 					"длина и целочисленные элементы массива.\n");
@@ -39,9 +40,15 @@ void show_message(int rc)
 
 		case HAPPY_END:
 			printf("Программа успешно завершилась.\n");
+            break;
 
 		case NULL_GIVEN:
 			printf("На вход функции поступил нулевой указатель.\n");
+            break;
+
+        default:
+            printf("Неизвестный код возврата!\n");
+            break;
 	}
 }
 
