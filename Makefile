@@ -19,7 +19,7 @@ app.exe: $(COBJ)
 
 test: test.exe
 	chmod +x run_pos_tests.sh
-	./run_pos_tests.sh
+	bash run_pos_tests.sh
 	$(RM) *.deleteme
 
 test.exe: $(TOBJ)
