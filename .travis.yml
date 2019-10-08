@@ -1,5 +1,8 @@
 language: c++
 
+install:
+    - sudo apt install valgrind
+
 script:
     - make test
 
