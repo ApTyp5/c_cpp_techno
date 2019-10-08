@@ -17,7 +17,8 @@ endif
 app.exe: $(COBJ)
 	$(CC) -o $@ $^
 
-run_tests: test.exe
+test: test.exe
+	chmod +x run_pos_tests.sh
 	./run_pos_tests.sh
 	$(RM) *.deleteme
 
