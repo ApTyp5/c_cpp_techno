@@ -1,7 +1,8 @@
 language: c++
 
 script:
-    make test
+    make test.exe
+    run_pos_tests.sh
 
 after_script:
     make clean
