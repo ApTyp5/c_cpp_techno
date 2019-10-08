@@ -1,2 +1,8 @@
 language: c++
 
+script:
+    make run_tests
+
+after_script:
+    make clean
+
