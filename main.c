@@ -2,8 +2,6 @@
 #include "proc_tools.h"
 #include "ret_codes.h"
 
-
-
 void show_message(int rc);
 
 int main()
@@ -13,41 +11,40 @@ int main()
 
 	int rc = user_input(&arr, &arr_len);
 	if (!rc) rc = process_data(arr, arr_len);
-	if (rc) show_message(rc);
+	printf("\n%s\n", show_message(rc));
 	if (arr) free(arr);
 	
 	return rc;
 }
 
-void show_message(int rc)
+const char * show_message(const int rc)
 {
-	printf("\n");
 	switch (rc)
 	{
 		case NO_ARITHM_SEQ:
-			printf("В данном массиве слишком мало элементов "
-					"для арифметической последовательности.\n");
+			return "В данном массиве слишком мало элементов "
+					"для арифметической последовательности.";
 			break;
 
 		case INPUT_ERR:
-			printf("Неверный ввод. Ожидается неотриательная "
-					"длина и целочисленные элементы массива.\n");
+			return"Неверный ввод. Ожидается неотриательная "
+					"длина и целочисленные элементы массива.";
 			break;
 
 		case ALLOC_ERR:
-			printf("Ошибка выделения памяти.\n");
+			return "Ошибка выделения памяти.";
 			break;
 
 		case HAPPY_END:
-			printf("Программа успешно завершилась.\n");
+			return "Программа успешно завершилась.";
             break;
 
 		case NULL_GIVEN:
-			printf("На вход функции поступил нулевой указатель.\n");
+			return "На вход функции поступил нулевой указатель.";
             break;
 
         default:
-            printf("Неизвестный код возврата!\n");
+            return ("Неизвестный код возврата!";
             break;
 	}
 }
