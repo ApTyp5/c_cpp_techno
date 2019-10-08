@@ -2,6 +2,8 @@ language: c++
 
 script:
     make test.exe
+
+after_sucsess:
     run_pos_tests.sh
 
 after_script:
