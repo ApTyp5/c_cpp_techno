@@ -25,6 +25,8 @@ do
 		echo -e "\e[32m SUCCESS \e[0m"
 	else
 		echo -e "\e[31m ERROR \e[0m"
+        od -c $result_file
+        od -c $output_tests/$test_template$i
 	fi
 done
 

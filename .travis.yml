@@ -1,8 +1,8 @@
 language: c++
 
 script:
-    make test
+    - make test
 
 after_script:
-    make clean
+    - make clean
 
