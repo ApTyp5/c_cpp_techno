@@ -19,7 +19,8 @@ before_install:
 
 script:
     - cmake CMakeLists.txt
-    - make Makefile
+    - ls
+    - make 
     - valgrind --leak-check=full -q ./run_tests.exe
 
 after_script:
