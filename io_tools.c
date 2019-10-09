@@ -53,6 +53,7 @@ int user_input(int *arr[], size_t *len)
 
 int show_arr(const char *invit, const int *const arr, size_t len)
 {
+#ifdef NDEBUG
 	if (arr == NULL) return NULL_GIVEN;
 
 	printf("%s", invit);
@@ -62,6 +63,8 @@ int show_arr(const char *invit, const int *const arr, size_t len)
 		printf("%d ", arr[i]);
 	}
 	printf("]\n");
+#else
+        
 
 	return EXIT_SUCCESS;
 }
