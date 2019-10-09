@@ -4,6 +4,10 @@
 
 int arr_input(int *arr[], size_t *len)
 {
+    if (len == NULL)
+        if ( !(len = malloc(sizeof(size_t))) )
+            return ALLOC_ERR;
+
 	if (scanf("%zu", len) != 1) return INPUT_ERR;
 	if ((*arr = malloc(*len * sizeof(int))) == NULL) return ALLOC_ERR;
 
