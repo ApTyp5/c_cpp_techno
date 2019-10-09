@@ -12,7 +12,7 @@ int arr_input(int *arr[], size_t *len)
 		if (scanf("%d", *arr + i) != 1) return INPUT_ERR;
 	}
 
-	return HAPPY_END;
+	return EXIT_SUCCESS;
 }
 
 
@@ -27,7 +27,7 @@ int arr_output(const int *const arr, size_t len)
 	}
 	printf("\n");
 
-	return HAPPY_END;
+	return EXIT_SUCCESS;
 }
 
 
@@ -44,7 +44,7 @@ int user_input(int *arr[], size_t *len)
 		if (scanf("%d", *arr + i) != 1) return INPUT_ERR;
 	}
 
-	return HAPPY_END;
+	return EXIT_SUCCESS;
 }
 
 int show_arr(const char *invit, const int *const arr, size_t len)
@@ -59,6 +59,6 @@ int show_arr(const char *invit, const int *const arr, size_t len)
 	}
 	printf("]\n");
 
-	return HAPPY_END;
+	return EXIT_SUCCESS;
 }
 

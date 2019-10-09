@@ -21,7 +21,7 @@ const char *show_message(const int rc)
 {
 	switch (rc)
 	{
-		case NO_ARITHM_SEQ:
+		case EXIT_FAILURE:
 			return "В данном массиве слишком мало элементов "
 					"для арифметической последовательности.";
 			break;
@@ -35,7 +35,7 @@ const char *show_message(const int rc)
 			return "Ошибка выделения памяти.";
 			break;
 
-		case HAPPY_END:
+		case EXIT_SUCCESS:
 			return "Программа успешно завершилась.";
             break;
 

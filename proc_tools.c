@@ -8,13 +8,13 @@ int process_data(const int *const arr, size_t len)
 
 	if ((seq_len = longest_arithm_seq(&output_seq, arr, len)) == 0)
 	{
-		return NO_ARITHM_SEQ;
+		return EXIT_FAILURE;
 	}
 
 	show_arr("Aрифметическая последовательнoсть"
 			 " с наибольшей длиной:\n", output_seq, seq_len);
 
-	return HAPPY_END;
+	return EXIT_SUCCESS;
 }
 
 
