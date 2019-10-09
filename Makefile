@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named runTests.exe
+# Target rules for targets named run_tests.exe
 
 # Build rule for target.
-runTests.exe: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 runTests.exe
-.PHONY : runTests.exe
+run_tests.exe: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 run_tests.exe
+.PHONY : run_tests.exe
 
 # fast build rule for target.
-runTests.exe/fast:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/build
-.PHONY : runTests.exe/fast
+run_tests.exe/fast:
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/build
+.PHONY : run_tests.exe/fast
 
 #=============================================================================
 # Target rules for targets named app.exe
@@ -142,7 +142,7 @@ io_tools.o: io_tools.c.o
 
 # target to build an object file
 io_tools.c.o:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/io_tools.c.o
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/io_tools.c.o
 	$(MAKE) -f CMakeFiles/app.exe.dir/build.make CMakeFiles/app.exe.dir/io_tools.c.o
 .PHONY : io_tools.c.o
 
@@ -152,7 +152,7 @@ io_tools.i: io_tools.c.i
 
 # target to preprocess a source file
 io_tools.c.i:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/io_tools.c.i
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/io_tools.c.i
 	$(MAKE) -f CMakeFiles/app.exe.dir/build.make CMakeFiles/app.exe.dir/io_tools.c.i
 .PHONY : io_tools.c.i
 
@@ -162,7 +162,7 @@ io_tools.s: io_tools.c.s
 
 # target to generate assembly for a file
 io_tools.c.s:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/io_tools.c.s
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/io_tools.c.s
 	$(MAKE) -f CMakeFiles/app.exe.dir/build.make CMakeFiles/app.exe.dir/io_tools.c.s
 .PHONY : io_tools.c.s
 
@@ -199,7 +199,7 @@ proc_tools.o: proc_tools.c.o
 
 # target to build an object file
 proc_tools.c.o:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/proc_tools.c.o
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/proc_tools.c.o
 	$(MAKE) -f CMakeFiles/app.exe.dir/build.make CMakeFiles/app.exe.dir/proc_tools.c.o
 .PHONY : proc_tools.c.o
 
@@ -209,7 +209,7 @@ proc_tools.i: proc_tools.c.i
 
 # target to preprocess a source file
 proc_tools.c.i:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/proc_tools.c.i
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/proc_tools.c.i
 	$(MAKE) -f CMakeFiles/app.exe.dir/build.make CMakeFiles/app.exe.dir/proc_tools.c.i
 .PHONY : proc_tools.c.i
 
@@ -219,7 +219,7 @@ proc_tools.s: proc_tools.c.s
 
 # target to generate assembly for a file
 proc_tools.c.s:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/proc_tools.c.s
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/proc_tools.c.s
 	$(MAKE) -f CMakeFiles/app.exe.dir/build.make CMakeFiles/app.exe.dir/proc_tools.c.s
 .PHONY : proc_tools.c.s
 
@@ -229,7 +229,7 @@ test.o: test.c.o
 
 # target to build an object file
 test.c.o:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/test.c.o
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/test.c.o
 .PHONY : test.c.o
 
 test.i: test.c.i
@@ -238,7 +238,7 @@ test.i: test.c.i
 
 # target to preprocess a source file
 test.c.i:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/test.c.i
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/test.c.i
 .PHONY : test.c.i
 
 test.s: test.c.s
@@ -247,7 +247,7 @@ test.s: test.c.s
 
 # target to generate assembly for a file
 test.c.s:
-	$(MAKE) -f CMakeFiles/runTests.exe.dir/build.make CMakeFiles/runTests.exe.dir/test.c.s
+	$(MAKE) -f CMakeFiles/run_tests.exe.dir/build.make CMakeFiles/run_tests.exe.dir/test.c.s
 .PHONY : test.c.s
 
 # Help Target
@@ -257,7 +257,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... runTests.exe"
+	@echo "... run_tests.exe"
 	@echo "... rebuild_cache"
 	@echo "... app.exe"
 	@echo "... io_tools.o"
