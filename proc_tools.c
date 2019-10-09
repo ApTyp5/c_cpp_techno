@@ -36,12 +36,6 @@ size_t longest_arithm_seq(const int **output_seq,
 		return 0;
 	}
 
-	if (len == 2) 
-	{
-        *output_seq = init_arr;
-		return 2;
-	}
-
 	size_t seq_len = 2;
 	const int *seq_ptr = init_arr;
 	size_t max_seq_len = 0;
