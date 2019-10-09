@@ -16,9 +16,9 @@ int arr_input(int *arr[], size_t *len)
 }
 
 
-int arr_output(int arr[], size_t len)
+int arr_output(const int *const arr, size_t len)
 {
-	if (arr == NULL) return NULL_GIVEN;
+	if (arr == NULL && len != 0) return NULL_GIVEN;
 
 	printf("%zu\n", len);
 	for (size_t i = 0; i < len; i++)
@@ -47,7 +47,7 @@ int user_input(int *arr[], size_t *len)
 	return HAPPY_END;
 }
 
-int show_arr(const char *invit, int *arr, size_t len)
+int show_arr(const char *invit, const int *const arr, size_t len)
 {
 	if (arr == NULL) return NULL_GIVEN;
 

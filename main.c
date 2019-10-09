@@ -2,7 +2,7 @@
 #include "proc_tools.h"
 #include "ret_codes.h"
 
-void show_message(int rc);
+const char *show_message(int rc);
 
 int main()
 {
@@ -12,12 +12,12 @@ int main()
 	int rc = user_input(&arr, &arr_len);
 	if (!rc) rc = process_data(arr, arr_len);
 	printf("\n%s\n", show_message(rc));
-	if (arr) free(arr);
+	if (arr) { free(arr); arr = NULL; }
 	
 	return rc;
 }
 
-const char * show_message(const int rc)
+const char *show_message(const int rc)
 {
 	switch (rc)
 	{
@@ -44,7 +44,7 @@ const char * show_message(const int rc)
             break;
 
         default:
-            return ("Неизвестный код возврата!";
+            return "Неизвестный код возврата!";
             break;
 	}
 }

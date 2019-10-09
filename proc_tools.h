@@ -4,9 +4,9 @@
 
 #include <stddef.h>
 
-int process_data(int arr[], size_t len);
+/* Находит в массиве arr наибольшую арифметическую 
+ * последовательность и выводит её на экран */
+int process_data(const int *const arr, size_t len);
 
-void try_inc_seq(size_t *max_seq_len, int *arr[], 
-		size_t seq_len, int *init_arr, size_t active);
-
-int longest_arithm_seq(int *arr[], size_t len);
+size_t longest_arithm_seq(const int **output_seq, 
+        const int *const arr, size_t len);
