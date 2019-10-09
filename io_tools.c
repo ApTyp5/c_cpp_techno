@@ -39,7 +39,7 @@ int user_input(int *arr[], size_t *len)
 {
 	printf("Введите длину вводимого массива натуральное число:");
 	if (scanf("%zu", len) != 1) return INPUT_ERR;
-	if (*len == 0) return NO_ARITHM_SEQ;
+	if (*len == 0) return EXIT_FAILURE;
 	if ((*arr = malloc(*len * sizeof(int))) == NULL) return ALLOC_ERR;
 
 	printf("Введите %zu элементов массива (целые числа):", *len);
