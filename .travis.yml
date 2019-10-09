@@ -6,7 +6,8 @@ before_install:
     - sudo apt install cmake
 
 script:
-    - make
+    - cmake CMakeLists.txt
+    - make Makefile
     - valgrind --leak-check=full -q ./run_tests.exe
 
 after_script:
