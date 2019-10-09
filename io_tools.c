@@ -5,11 +5,13 @@
 int arr_input(int *arr[], size_t *len)
 {
     if (len == NULL)
-        if ( !(len = malloc(sizeof(size_t))) )
+    {
+        if ( !(len = (size_t *)malloc(sizeof(size_t))) )
             return ALLOC_ERR;
+    }
 
 	if (scanf("%zu", len) != 1) return INPUT_ERR;
-	if ((*arr = malloc(*len * sizeof(int))) == NULL) return ALLOC_ERR;
+	if ((*arr = (int *)malloc(*len * sizeof(int))) == NULL) return ALLOC_ERR;
 
 	for (size_t i = 0; i < *len; i++)
 	{
@@ -40,7 +42,7 @@ int user_input(int *arr[], size_t *len)
 	printf("Введите длину вводимого массива натуральное число:");
 	if (scanf("%zu", len) != 1) return INPUT_ERR;
 	if (*len == 0) return EXIT_FAILURE;
-	if ((*arr = malloc(*len * sizeof(int))) == NULL) return ALLOC_ERR;
+	if ((*arr = (int *)malloc(*len * sizeof(int))) == NULL) return ALLOC_ERR;
 
 	printf("Введите %zu элементов массива (целые числа):", *len);
 	for (size_t i = 0; i < *len; i++)
@@ -64,7 +66,10 @@ int show_arr(const char *invit, const int *const arr, size_t len)
 	}
 	printf("]\n");
 #else
-        
+    (void)invit;
+    (void)arr;
+    (void)len;
+#endif
 
 	return EXIT_SUCCESS;
 }
