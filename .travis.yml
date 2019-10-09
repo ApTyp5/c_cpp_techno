@@ -12,7 +12,7 @@ before_install:
       # Установка gtest
     - sudo apt install libgtest-dev 
     - cd /usr/src/gtest 
-    - sudo cmake CMakeLists.txt
+    - sudo cmake CMakeLists.txt || (cat CMakeFiles/CMakeError.log && CMakeFiles/CMakeOutput.log)
     - sudo make
     - sudo cp *.a /usr/lib
     - cd -
