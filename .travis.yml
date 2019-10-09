@@ -4,7 +4,13 @@ before_install:
     - sudo apt update
     - sudo apt install valgrind
     - sudo apt install cmake
-    - sudo apt install libgtest-dev
+      # Установка gtest
+    - sudo apt install libgtest-dev 
+    - cd /usr/src/gtest 
+    - sudo cmake CMakeLists.txt
+    - sudo make
+    - sudo cp *.a /usr/lib
+    - cd -
 
 script:
     - cmake CMakeLists.txt
@@ -13,4 +19,8 @@ script:
 
 after_script:
     - make clean
+
+addons:
+    apt:
+        update: true
 
