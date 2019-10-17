@@ -1,0 +1,7 @@
+*.o
+*.exe
+*.deleteme
+*.cmake
+CMakeCache.txt
+CMakeFiles/*
+Makefile
