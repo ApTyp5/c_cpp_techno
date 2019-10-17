@@ -6,6 +6,8 @@ addons:
 language: c++
 
 before_install:
+      # Идём в директорию IT1
+    - cd IT1
     - sudo apt update
     - sudo apt install valgrind
     - sudo apt install cmake
