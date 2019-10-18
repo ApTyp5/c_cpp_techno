@@ -6,10 +6,10 @@
 
 int simpleAvgVector(Vector_t *avg_vector, Vector_t vectors[], size_t size)
 {
-    if ((avg_vector == NULL)
-       ||  (vectors == NULL))   return EXIT_NULL_REC;
+    if (unlikely((avg_vector == NULL)
+                ||(vectors == NULL)))   return EXIT_NULL_REC;
 
-    if (size == 0)              return EXIT_ZERO_SIZ;
+    if (unlikely(size == 0))  return EXIT_ZERO_SIZ;
 
     Vector_bt sum_x = 0;
     Vector_bt sum_y = 0;

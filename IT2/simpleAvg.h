@@ -7,6 +7,7 @@
 
 #include "Vector.h"
 #include "errcodes.h"
+#include "optimisation.h"
 int simpleAvgVector(Vector_t *avg_vector, Vector_t vectors[], size_t size);
 
 #endif //IT2_SIMPLEAVG_H
