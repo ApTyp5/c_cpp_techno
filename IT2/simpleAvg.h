@@ -5,11 +5,12 @@
 #ifndef IT2_SIMPLEAVG_H
 #define IT2_SIMPLEAVG_H
 
-#include "Vector.h"
 #include "errcodes.h"
 #include "optimisation.h"
+#include "Vector.h"
 
 #include <cstdlib>
+
 int simpleAvgVector(littleVector_t *avg_vector, littleVector_t vectors[], size_t size);
 
 #endif //IT2_SIMPLEAVG_H

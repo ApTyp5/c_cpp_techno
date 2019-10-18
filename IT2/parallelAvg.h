@@ -5,13 +5,13 @@
 #ifndef IT2_PARALLELAVG_H
 #define IT2_PARALLELAVG_H
 
-#include "Vector.h"
 #include "errcodes.h"
 #include "optimisation.h"
+#include "Vector.h"
 
-#include <cstring>
-#include <cstdlib>
 #include <cassert>
+#include <cstdlib>
+#include <cstring>
 #include <pthread.h>
 
 #define MAX_CORES   100
