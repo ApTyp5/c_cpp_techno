@@ -1,23 +1,22 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.13)
 project(IT2)
-
-set(CMAKE_CXX_COMPILER g++)
-set(simpleAvgLib simpleAvg)
-set(paralledAvgLib parallelAvg)
-set(SOURCES main.cpp)
-#set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
 
 # Locate GTest
 find_package(GTest REQUIRED)
-INCLUDE_DIRECTORIES(${GTEST_INCLUDE_DIRS})
+
+include_directories(${GTEST_INCLUDE_DIRS})
+include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_BINARY_DIR})
 
 # Create static lib for simpleAvg
-add_library(${simpleAvgLib} STATIC simpleAvg.cpp)
+add_library(simpleAvg STATIC simpleAvg.cpp)
 
-# Create shared lib for paralledAvg
-add_library(${paralledAvgLib} SHARED parallelAvg.cpp)
+# Create shared lib for parallelAvg
+add_library(parallelAvg SHARED parallelAvg.cpp)
 
-add_executable(${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} ${simpleAvgLib} pthread ${paralledAvgLib})
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} ${GTEST_LIBRARIES} pthread)
+target_link_libraries(${PROJECT_NAME} parallelAvg)
+target_link_libraries(${PROJECT_NAME} simpleAvg)
 
 
