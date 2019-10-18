@@ -2,6 +2,8 @@
 *.exe
 *.deleteme
 *.cmake
+*.idea
 CMakeCache.txt
 CMakeFiles/*
 Makefile
+**/cmake*/**
