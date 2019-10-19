@@ -1,0 +1,5 @@
+/home/arthur/tmp/tmp/cm/CMakeFiles/edit_cache.dir
+/home/arthur/tmp/tmp/cm/CMakeFiles/main.dir
+/home/arthur/tmp/tmp/cm/CMakeFiles/rebuild_cache.dir
+/home/arthur/tmp/tmp/cm/CMakeFiles/lib.dir
+/home/arthur/tmp/tmp/cm/CMakeFiles/lib2.dir
