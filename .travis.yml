@@ -25,5 +25,5 @@ script:
     - cd $DIR
     - cmake CMakeLists.txt
     - make test
-    - valgrind --leak-check=full -q ./test.exe
+    - valgrind --leak-check=full -q ./test
 
