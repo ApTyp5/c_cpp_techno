@@ -76,12 +76,11 @@ inline void count_answer(littleVector_t avg_vector, summerArgs args[],
 
 int parallelAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_t size)
 {
-    /*
+
     if (unlikely((avg_vector == nullptr)
-                     ||(vectors == nullptr)))   return EXIT_NULL_REC;
-*/
-    if (avg_vector == nullptr || vectors == nullptr) return EXIT_NULL_REC;
-    if (unlikely(size == 0))  return EXIT_ZERO_SIZ;
+                       || vectors == nullptr)) return EXIT_NULL_REC;
+
+    if (unlikely(size == 0)) return EXIT_ZERO_SIZ;
 
     // Считаем клоличество логических ядер процессра
     size_t core_num = find_core_num();

@@ -55,16 +55,19 @@ TEST(compareTest, sizes_10_10000){
     }
 }
 
-TEST(simpleAvgTest, vectors_NULL){
+TEST(AvgTest, vectors_NULL){
     littleVector_t *vectors = NULL;
     littleVector_t avg_vector = {0};
     size_t size = 1;
 
     int ret_code = simpleAvgVector(avg_vector, vectors, size);
     ASSERT_EQ(ret_code, EXIT_NULL_REC);
+
+    ret_code = parallelAvgVector(avg_vector, vectors, size);
+    ASSERT_EQ(ret_code, EXIT_NULL_REC);
 }
 
-TEST(simpleAvgTest, size_0){
+TEST(AvgTest, size_0){
     littleVector_t *vectors = create_test_vector_arr(1);
     littleVector_t avg_vector = {0};
     size_t size = 0;
@@ -72,8 +75,13 @@ TEST(simpleAvgTest, size_0){
     int ret_code = simpleAvgVector(avg_vector, vectors, size);
     ASSERT_EQ(ret_code, EXIT_ZERO_SIZ);
 
+    ret_code = parallelAvgVector(avg_vector, vectors, size);
+    ASSERT_EQ(ret_code, EXIT_ZERO_SIZ);
+
     free(vectors);
 }
+
+
 
 int main(int argc, char *argv[]){
     ::testing::InitGoogleTest(&argc, argv);
