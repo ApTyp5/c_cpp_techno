@@ -20,7 +20,7 @@ before_install:
     - sudo cp *.a /usr/lib
 
 script:
-    - cd $DIR
+    - cd ~/$DIR
     - cmake CMakeLists.txt
     - make test
     - valgrind --leak-check=full -q ./test.exe
