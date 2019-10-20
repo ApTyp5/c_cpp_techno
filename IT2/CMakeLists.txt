@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 project(IT2)
-
+set(CMAKE_CXX_STANDARD 11)
 # Locate GTest
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
