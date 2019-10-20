@@ -16,6 +16,6 @@
 
 #define MAX_CORES   100
 
-int parallelAvgVector(littleVector_t *avg_vector, littleVector_t vectors[], size_t size);
+int parallelAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_t size);
 
 #endif //IT2_PARALLELAVG_H

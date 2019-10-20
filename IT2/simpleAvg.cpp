@@ -1,8 +1,3 @@
-//
-// Created by arthur on 18.10.2019.
-//
-
-
 #include "simpleAvg.h"
 
 int simpleAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_t size)

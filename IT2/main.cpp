@@ -30,23 +30,35 @@ littleVector_t *copy_test_vector_arr(littleVector_t *arr1, size_t size){
 
     return res;
 }
-
+/*
 TEST(compareTest, size5){
     size_t size = 5;
     littleVector_t ans1;
     littleVector_t ans2;
     littleVector_t *arr1 = create_test_vector_arr(size);
     littleVector_t *arr2 = copy_test_vector_arr(arr1, size);
-    simpleAvgVector(&ans1, arr1, size);
-    parallelAvgVector(&ans2, arr2, size);
+    simpleAvgVector(ans1, arr1, size);
+    parallelAvgVector(ans2, arr2, size);
     for (size_t i = 0; i < VecSize; i++){
         ASSERT_EQ(ans1[i], ans2[i]);
     }
 }
+*/
+
 
 int main(int argc, char *argv[]){
+    /*
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
+    */
+
+    size_t size = 5;
+    littleVector_t ans1;
+    littleVector_t ans2;
+    littleVector_t *arr1 = create_test_vector_arr(size);
+    littleVector_t *arr2 = copy_test_vector_arr(arr1, size);
+    simpleAvgVector(ans1, arr1, size);
+    parallelAvgVector(ans2, arr2, size);
 }
 
 

@@ -5,7 +5,6 @@ project(IT2)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-
 # Create static lib for simpleAvg
 add_library(simpleAvg STATIC simpleAvg.cpp)
 
