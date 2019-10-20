@@ -10,7 +10,7 @@ env:
 
 before_install:
     - sudo apt update
-    - sudo install build-essential
+    - sudo apt install build-essential
     - sudo apt install valgrind
     - sudo apt install cmake
       # Установка gtest
