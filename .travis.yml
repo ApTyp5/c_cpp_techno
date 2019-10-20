@@ -30,5 +30,5 @@ script:
       # Показ покрытия
     - cd CMakeFiles/test.exe.dir
     - echo "Покрытие:"
-    - gcov main.cpp | head -n 2
+    - gcov test.cpp | head -n 2
 

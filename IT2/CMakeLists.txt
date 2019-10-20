@@ -16,7 +16,7 @@ add_library(simpleAvg STATIC simpleAvg.cpp)
 # Create shared lib for parallelAvg
 add_library(parallelAvg SHARED parallelAvg.cpp)
 
-add_executable(${EXEC_NAME} main.cpp)
+add_executable(${EXEC_NAME} test.cpp)
 target_link_libraries(${EXEC_NAME} simpleAvg)
 target_link_libraries(${EXEC_NAME} parallelAvg)
 target_link_libraries(${EXEC_NAME} ${GTEST_LIBRARIES} pthread)
