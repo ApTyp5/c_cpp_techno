@@ -29,6 +29,6 @@ script:
     - valgrind --leak-check=full -q ./test.exe
       # Показ покрытия
     - cd CMakeFiles/test.exe.dir
-    - echo Покрытие:
+    - echo "Покрытие:"
     - gcov main.cpp | head -n 2
 
