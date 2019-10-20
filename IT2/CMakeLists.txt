@@ -21,10 +21,3 @@ target_link_libraries(${EXEC_NAME} simpleAvg)
 target_link_libraries(${EXEC_NAME} parallelAvg)
 target_link_libraries(${EXEC_NAME} ${GTEST_LIBRARIES} pthread)
 
-
-#add_executable(${SHOW_COV_EXE} main.cpp)
-#target_link_libraries(${SHOW_COV_EXE} simpleAvg)
-#target_link_libraries(${SHOW_COV_EXE} parallelAvg)
-#target_link_libraries(${SHOW_COV_EXE} ${GTEST_LIBRARIES} pthread)
-#target_compile_options(${SHOW_COV_EXE} PRIVATE -fprofile-arcs PRIVATE -ftest-coverage)
-#target_link_options(${SHOW_COV_EXE} PRIVATE -lgcov PRIVATE --coverage)
