@@ -2,10 +2,10 @@
 
 int simpleAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_t size)
 {
-    if (unlikely((avg_vector == nullptr)
-                ||(vectors == nullptr)))   return EXIT_NULL_REC;
+    if (unlikely((avg_vector == NULL)
+                       || vectors == NULL)) return EXIT_NULL_REC;
 
-    if (unlikely(size == 0))  return EXIT_ZERO_SIZ;
+    if (unlikely(size == 0)) return EXIT_ZERO_SIZ;
 
     Vector_bt sum[VecSize] = {0};
 
