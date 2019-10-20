@@ -6,7 +6,7 @@ find_package(GTest REQUIRED)
 INCLUDE_DIRECTORIES(${GTEST_INCLUDE_DIRS})
 
 # Link runTests with what we want to test and the GTest and pthread lib
-add_executable(tests.exe test.c proc_tools.c io_tools.c)
+add_executable(test test.c proc_tools.c io_tools.c)
 add_executable(app.exe main.c proc_tools.c io_tools.c)
 target_link_libraries(tests.exe ${GTEST_LIBRARIES} pthread)
 
