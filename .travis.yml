@@ -15,8 +15,8 @@ before_install:
       # Установка gtest
     - sudo apt install libgtest-dev 
     - cd /usr/src/gtest 
-    - cmake .
-    - make
+    - sudo cmake .
+    - sudo make
     - sudo cp *.a /usr/lib
 
 script:
