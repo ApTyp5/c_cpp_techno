@@ -5,7 +5,6 @@ set(CMAKE_CXX_FLAGS "-O0 -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 
 set(EXEC_NAME test.exe)
-set(SHOW_COV_EXE cov.exe)
 
 # Locate GTest
 find_package(GTest REQUIRED)
