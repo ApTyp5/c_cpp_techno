@@ -21,6 +21,7 @@ before_install:
 
 script:
     - cd -
+    - cd $DIR
     - cmake CMakeLists.txt
     - make test
     - valgrind --leak-check=full -q ./test.exe
