@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.12)
 project(IT2)
 set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_FLAGS "-O0 -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 
-set(EXEC_NAME test)
-set(SHOW_COV_EXE ${EXEC_NAME}_cov)
+set(EXEC_NAME test.exe)
+set(SHOW_COV_EXE cov.exe)
 
 # Locate GTest
 find_package(GTest REQUIRED)
@@ -21,8 +23,9 @@ target_link_libraries(${EXEC_NAME} parallelAvg)
 target_link_libraries(${EXEC_NAME} ${GTEST_LIBRARIES} pthread)
 
 
-add_executable(${SHOW_COV_EXE} main.cpp)
-target_link_libraries(${SHOW_COV_EXE} simpleAvg)
-target_link_libraries(${SHOW_COV_EXE} parallelAvg)
-target_link_libraries(${SHOW_COV_EXE} ${GTEST_LIBRARIES} pthread)
-target_compile_options(${SHOW_COV_EXE} -fprofile-arcs -ftest-coverage)
+#add_executable(${SHOW_COV_EXE} main.cpp)
+#target_link_libraries(${SHOW_COV_EXE} simpleAvg)
+#target_link_libraries(${SHOW_COV_EXE} parallelAvg)
+#target_link_libraries(${SHOW_COV_EXE} ${GTEST_LIBRARIES} pthread)
+#target_compile_options(${SHOW_COV_EXE} PRIVATE -fprofile-arcs PRIVATE -ftest-coverage)
+#target_link_options(${SHOW_COV_EXE} PRIVATE -lgcov PRIVATE --coverage)

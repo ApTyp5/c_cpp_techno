@@ -25,5 +25,10 @@ script:
     - cd $DIR
     - cmake CMakeLists.txt
     - make test
+      # Запуск тестов
     - valgrind --leak-check=full -q ./test
+      # Показ покрытия
+    - cd CMakeFiles/test.dir
+    - echo "Покрытие:"
+    - gcov main.cpp | head -n=3
 
