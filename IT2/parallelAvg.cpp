@@ -13,6 +13,7 @@ struct summerArgs{
     bigVector_t sum;
 };
 
+// Не лето, но сумматор
 void *summer(void *sumArgs) {
     auto *summerArgs_ptr    = (summerArgs *)sumArgs;
     littleVector_t *vectors = summerArgs_ptr->vectors;
@@ -30,6 +31,8 @@ void *summer(void *sumArgs) {
     pthread_exit(nullptr);
 }
 
+// Реализацию всегда можно будет заменить на более сложную,
+// находящую реальное кол-во ядер системы
 size_t find_core_num(){
     /*
     size_t core_num = system("cat /proc/cpuinfo | grep processor | wc -l");
@@ -40,6 +43,39 @@ size_t find_core_num(){
     return core_num;
 }
 
+void start_all_threads(summerArgs args[], pthread_t threads[],
+                              littleVector_t vectors[], size_t core_num,
+                              size_t el_per_core, size_t size);
+
+void wait_all_threads(pthread_t threads[], size_t core_num);
+
+inline void count_answer(littleVector_t avg_vector, summerArgs args[],
+                        size_t core_num, size_t size);
+
+int parallelAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_t size)
+{
+    if (unlikely((avg_vector == nullptr)
+                  || vectors == nullptr)) return EXIT_NULL_REC;
+
+    if (unlikely(size == 0)) return EXIT_ZERO_SIZ;
+
+    // Считаем клоличество логических ядер процессра
+    size_t core_num = find_core_num();
+    if (core_num <= 0) return EXIT_FAILURE;
+
+    // Почему бы и не воспользоваться массивами переменной длины,
+    // количество ядер мало когда будет меньше ста
+    pthread_t threads[core_num];
+    summerArgs args[core_num];
+    size_t el_per_core = size / core_num;
+
+    start_all_threads(args, threads, vectors,core_num, el_per_core, size);
+    wait_all_threads(threads, core_num);
+    count_answer(avg_vector, args, core_num, size);
+    return EXIT_SUCCESS;
+}
+
+
 inline void start_all_threads(summerArgs args[], pthread_t threads[],
                               littleVector_t vectors[], size_t core_num,
                               size_t el_per_core, size_t size){
@@ -49,6 +85,7 @@ inline void start_all_threads(summerArgs args[], pthread_t threads[],
         pthread_create(threads + i, nullptr, summer, args + i);
     }
 
+    // Последний поток должен обработать оставшиеся элементы
     size_t last_i = core_num - 1;
     size_t elements_processed = el_per_core * last_i;
     args[last_i] = {vectors + elements_processed,size - elements_processed};
@@ -74,26 +111,4 @@ inline void count_answer(littleVector_t avg_vector, summerArgs args[],
     }
 }
 
-int parallelAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_t size)
-{
 
-    if (unlikely((avg_vector == nullptr)
-                       || vectors == nullptr)) return EXIT_NULL_REC;
-
-    if (unlikely(size == 0)) return EXIT_ZERO_SIZ;
-
-    // Считаем клоличество логических ядер процессра
-    size_t core_num = find_core_num();
-    if (core_num <= 0) return EXIT_FAILURE;
-
-    // Почему бы и не воспользоваться массивами переменной длины,
-    // количество ядер мало когда будет меньше ста
-    pthread_t threads[core_num];
-    summerArgs args[core_num];
-    size_t el_per_core = size / core_num;
-
-    start_all_threads(args, threads, vectors,core_num, el_per_core, size);
-    wait_all_threads(threads, core_num);
-    count_answer(avg_vector, args, core_num, size);
-    return EXIT_SUCCESS;
-}
