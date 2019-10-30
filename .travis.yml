@@ -4,16 +4,18 @@ addons:
     update: true
 
 stages:
+    - build
     - wow
 
 env:
   - DIR=IT1
   - DIR=IT2
 
-language: c++
+language: cpp
 
 jobs:
   include:
+      stage: build
       before_install:
       - sudo apt update
       - sudo apt install build-essential
