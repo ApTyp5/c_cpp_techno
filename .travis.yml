@@ -10,6 +10,16 @@ stages:
 
 language: c++
 
+
+  before_install:
+  - sudo apt update
+  - sudo apt install build-essential
+  - sudo apt install valgrind
+  - sudo apt install cmake
+  - sudo apt install libgtest-dev 
+
+
+
 jobs:
 
     #  env:
@@ -18,15 +28,8 @@ jobs:
 
   include:
   - stage: st1
-    before_install:
-  - sudo apt update
-  - sudo apt install build-essential
-  - sudo apt install valgrind
-  - sudo apt install cmake
-
   - stage: st2
     build:
-  - sudo apt install libgtest-dev 
   - cd /usr/src/gtest 
   - sudo cmake .
   - sudo make
