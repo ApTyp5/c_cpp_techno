@@ -19,7 +19,6 @@ env:
 
 jobs:
   include:
-    stage: install
       before_install:
       - sudo apt update
       - sudo apt install build-essential
@@ -33,7 +32,6 @@ jobs:
       - sudo cp *.a /usr/lib
       - cd -
 
-    stage: build
       before_script:
       - cd $DIR
       - cmake CMakeLists.txt
