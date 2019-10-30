@@ -8,13 +8,14 @@ stages:
     - st3
     - st4
 
-env:
-  - DIR=IT1
-  - DIR=IT2
-
 language: cpp
 
 jobs:
+
+  env:
+  - DIR=IT1
+  - DIR=IT2
+
   include:
   - stage: st1
     before_install:
