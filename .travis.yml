@@ -12,9 +12,9 @@ language: cpp
 
 jobs:
 
-  env:
-  - DIR=IT1
-  - DIR=IT2
+    #  env:
+    #  - DIR=IT1
+    #  - DIR=IT2
 
   include:
   - stage: st1
