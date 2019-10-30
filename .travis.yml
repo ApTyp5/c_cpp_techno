@@ -8,9 +8,9 @@ env:
   - DIR=IT1
   - DIR=IT2
 
-      #stages:
+      stages:
       #    - install
-      #    - build
+          - build
       #    - cppcheck
       #    - unit_tests
       #    - covarage
@@ -32,6 +32,7 @@ jobs:
       - sudo cp *.a /usr/lib
       - cd -
 
+      stage: build
       before_script:
       - cd $DIR
       - cmake CMakeLists.txt
