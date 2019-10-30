@@ -8,27 +8,46 @@ env:
     - DIR=IT1
     - DIR=IT2
 
-before_install:
-    - sudo apt update
-    - sudo apt install build-essential
-    - sudo apt install valgrind
-    - sudo apt install cmake
-      # Установка gtest
-    - sudo apt install libgtest-dev 
-    - cd /usr/src/gtest 
-    - sudo cmake .
-    - sudo make
-    - sudo cp *.a /usr/lib
+stages:
+    - install
+    - build
+    - cppcheck
+    - unit_tests
+    - covarage
+    - valgrind
 
-script:
-    - cd -
-    - cd $DIR
-    - cmake CMakeLists.txt
-    - make test.exe
-      # Запуск тестов
-    - valgrind --leak-check=full -q ./test.exe
-      # Показ покрытия
-    - cd CMakeFiles/test.exe.dir
-    - echo "Покрытие:"
-    - gcov test.cpp | head -n 2
 
+jobs:
+    include:
+        stage: install
+            before_install:
+                - sudo apt update
+                - sudo apt install build-essential
+                - sudo apt install valgrind
+                - sudo apt install cmake
+                  # Установка gtest
+                - sudo apt install libgtest-dev 
+                - cd /usr/src/gtest 
+                - sudo cmake .
+                - sudo make
+                - sudo cp *.a /usr/lib
+                - cd -
+
+        stage: build
+            before_script:
+                - cd $DIR
+                - cmake CMakeLists.txt
+                - make test.exe
+
+        stage: cppcheck
+        # cppcheck
+        stage: unit_tests
+        # tests
+        stage: covarage
+        - cd CMakeFiles/test.exe.dir
+        - echo "Покрытие:"
+        - gcov test.cpp | head -n 2
+        stage: valgrind
+            - valgrind --leak-check=full -q ./functional_test.exe
+
+ 
