@@ -1,12 +1,12 @@
 language: c++
 
 addons:
-    apt:
-        update: true
+  apt:
+    update: true
 
 env:
-    - DIR=IT1
-    - DIR=IT2
+  - DIR=IT1
+  - DIR=IT2
 
       #stages:
       #    - install
@@ -18,29 +18,29 @@ env:
 
 
 jobs:
-    include:
-        stage: install
-            before_install:
-                - sudo apt update
-                - sudo apt install build-essential
-                - sudo apt install valgrind
-                - sudo apt install cmake
-                  # Установка gtest
-                - sudo apt install libgtest-dev 
-                - cd /usr/src/gtest 
-                - sudo cmake .
-                - sudo make
-                - sudo cp *.a /usr/lib
-                - cd -
+  include:
+    stage: install
+      before_install:
+      - sudo apt update
+      - sudo apt install build-essential
+      - sudo apt install valgrind
+      - sudo apt install cmake
+        # Установка gtest
+      - sudo apt install libgtest-dev 
+      - cd /usr/src/gtest 
+      - sudo cmake .
+      - sudo make
+      - sudo cp *.a /usr/lib
+      - cd -
 
-        stage: build
-            before_script:
-                - cd $DIR
-                - cmake CMakeLists.txt
-                - make
-                - valgrind --leak-check=full -q ./test.exe
-                - cd CMakeFiles/test.exe.dir
-                - echo "Покрытие:"
-                - gcov test.cpp | head -n 2
+    stage: build
+      before_script:
+      - cd $DIR
+      - cmake CMakeLists.txt
+      - make
+      - valgrind --leak-check=full -q ./test.exe
+      - cd CMakeFiles/test.exe.dir
+      - echo "Покрытие:"
+      - gcov test.cpp | head -n 2
 
  
