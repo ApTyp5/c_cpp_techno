@@ -6,39 +6,26 @@ addons:
   - DIR=IT1
   - DIR=IT2
 
-
-stages:
-  - st1
-  - st2
-  - st3
-  - st4
-
 language: c++
 
 
-stage: st1
-  install:
-  - sudo apt update
-  - sudo apt install build-essential
-  - sudo apt install valgrind
-  - sudo apt install cmake
-  - sudo apt install libgtest-dev 
+  before_install: sudo apt update
+  install: sudo apt install build-essential
+  install: sudo apt install valgrind
+  install: sudo apt install cmake
+  install: sudo apt install libgtest-dev 
 
-stage: st2
-  build:
+  before_script:
   - cd /usr/src/gtest 
   - sudo cmake .
   - sudo make
   - sudo cp *.a /usr/lib
   - cd -
 
-stage: st3
-  before_script:
   - cd $DIR
   - cmake CMakeLists.txt
   - make
 
-stage: st4
   script:
   - valgrind --leak-check=full -q ./test.exe
   - cd CMakeFiles/test.exe.dir
