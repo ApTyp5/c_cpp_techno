@@ -38,16 +38,9 @@ jobs:
                 - cd $DIR
                 - cmake CMakeLists.txt
                 - make
-
-        stage: cppcheck
-        # cppcheck
-        stage: unit_tests
-        # tests
-        stage: covarage
-        - cd CMakeFiles/test.exe.dir
-        - echo "Покрытие:"
-        - gcov test.cpp | head -n 2
-        stage: valgrind
-            - valgrind --leak-check=full -q ./functional_test.exe
+                - valgrind --leak-check=full -q ./test.exe
+                - cd CMakeFiles/test.exe.dir
+                - echo "Покрытие:"
+                - gcov test.cpp | head -n 2
 
  
