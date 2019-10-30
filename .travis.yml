@@ -3,15 +3,15 @@ addons:
     update: true
 
 stages:
-    - st1
-    - st2
-    - st3
-    - st4
+  - st1
+  - st2
+  - st3
+  - st4
 
 language: c++
 
 
-  before_install:
+before_install:
   - sudo apt update
   - sudo apt install build-essential
   - sudo apt install valgrind
