@@ -36,6 +36,8 @@ jobs:
       - cd $DIR
       - cmake CMakeLists.txt
       - make
+      stage: st4
+      script:
       - valgrind --leak-check=full -q ./test.exe
       - cd CMakeFiles/test.exe.dir
       - echo "Покрытие:"
