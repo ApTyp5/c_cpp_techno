@@ -8,13 +8,13 @@ env:
     - DIR=IT1
     - DIR=IT2
 
-stages:
-    - install
-    - build
-    - cppcheck
-    - unit_tests
-    - covarage
-    - valgrind
+      #stages:
+      #    - install
+      #    - build
+      #    - cppcheck
+      #    - unit_tests
+      #    - covarage
+      #    - valgrind
 
 
 jobs:
