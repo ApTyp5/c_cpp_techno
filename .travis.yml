@@ -2,9 +2,9 @@ addons:
   apt:
     update: true
 
-    #  env:
-    #  - DIR=IT1
-    #  - DIR=IT2
+env:
+  - DIR=IT1
+  - DIR=IT2
 
 language: c++
 
