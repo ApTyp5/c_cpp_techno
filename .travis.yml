@@ -4,8 +4,10 @@ addons:
     update: true
 
 stages:
-    - build
-    - wow
+    - st1
+    - st2
+    - st3
+    - st4
 
 env:
   - DIR=IT1
@@ -15,12 +17,13 @@ language: cpp
 
 jobs:
   include:
-      stage: build
+      stage: st1
       before_install:
       - sudo apt update
       - sudo apt install build-essential
       - sudo apt install valgrind
       - sudo apt install cmake
+      stage: st2
         # Установка gtest
       - sudo apt install libgtest-dev 
       - cd /usr/src/gtest 
@@ -29,11 +32,12 @@ jobs:
       - sudo cp *.a /usr/lib
       - cd -
 
-      stage: wow
+      stage: st3
       before_script:
       - cd $DIR
       - cmake CMakeLists.txt
       - make
+      stage: st4
       - valgrind --leak-check=full -q ./test.exe
       - cd CMakeFiles/test.exe.dir
       - echo "Покрытие:"
