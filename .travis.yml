@@ -8,7 +8,7 @@ env:
 
 language: c++
 
-
+stage: st1
 before_install: 
  - sudo apt update
  - sudo apt install build-essential
