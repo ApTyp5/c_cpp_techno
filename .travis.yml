@@ -1,19 +1,16 @@
-language: c++
 
 addons:
   apt:
     update: true
 
+stages:
+    - wow
+
 env:
   - DIR=IT1
   - DIR=IT2
 
-      #    - install
-      #    - cppcheck
-      #    - unit_tests
-      #    - covarage
-      #    - valgrind
-
+language: c++
 
 jobs:
   include:
@@ -30,7 +27,7 @@ jobs:
       - sudo cp *.a /usr/lib
       - cd -
 
-      - stage: build
+      stage: wow
       before_script:
       - cd $DIR
       - cmake CMakeLists.txt
