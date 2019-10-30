@@ -15,32 +15,31 @@ language: c++
 
 
 jobs:
-    include:
-        stage: st1
-            before_install: 
-             - sudo apt update
-             - sudo apt install build-essential
-             - sudo apt install valgrind
-             - sudo apt install cmake
-             - sudo apt install libgtest-dev 
+    stage: st1
+        before_install: 
+         - sudo apt update
+         - sudo apt install build-essential
+         - sudo apt install valgrind
+         - sudo apt install cmake
+         - sudo apt install libgtest-dev 
 
-        stage: st2
-            before_script:
-             - cd /usr/src/gtest 
-             - sudo cmake .
-             - sudo make
-             - sudo cp *.a /usr/lib
-             - cd -
+    stage: st2
+        before_script:
+         - cd /usr/src/gtest 
+         - sudo cmake .
+         - sudo make
+         - sudo cp *.a /usr/lib
+         - cd -
 
-             - cd $DIR
-             - cmake CMakeLists.txt
-             - make
+         - cd $DIR
+         - cmake CMakeLists.txt
+         - make
 
-        stage: st3
-            script:
-             - valgrind --leak-check=full -q ./test.exe
-             - cd CMakeFiles/test.exe.dir
-             - echo "Покрытие:"
-             - gcov test.cpp | head -n 2
+    stage: st3
+        script:
+         - valgrind --leak-check=full -q ./test.exe
+         - cd CMakeFiles/test.exe.dir
+         - echo "Покрытие:"
+         - gcov test.cpp | head -n 2
 
  
