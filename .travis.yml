@@ -1,4 +1,3 @@
-
 addons:
   apt:
     update: true
@@ -23,7 +22,7 @@ jobs:
       - sudo apt install build-essential
       - sudo apt install valgrind
       - sudo apt install cmake
-      stage: st2
+
         # Установка gtest
       - sudo apt install libgtest-dev 
       - cd /usr/src/gtest 
@@ -37,7 +36,6 @@ jobs:
       - cd $DIR
       - cmake CMakeLists.txt
       - make
-      stage: st4
       - valgrind --leak-check=full -q ./test.exe
       - cd CMakeFiles/test.exe.dir
       - echo "Покрытие:"
