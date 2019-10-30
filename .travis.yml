@@ -11,7 +11,7 @@ stages:
 language: c++
 
 
-before_install:
+install:
   - sudo apt update
   - sudo apt install build-essential
   - sudo apt install valgrind
