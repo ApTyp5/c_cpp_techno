@@ -2,6 +2,11 @@ addons:
   apt:
     update: true
 
+stages:
+    - st1
+    - st2 
+    - st3 
+
 env:
   - DIR=IT1
   - DIR=IT2
