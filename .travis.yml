@@ -14,8 +14,8 @@ stages:
   - cppcheck
   - build
 
-stage: install
 install:
+stage: install
   - sudo apt update
   - sudo apt install build-essential
   - sudo apt install valgrind
