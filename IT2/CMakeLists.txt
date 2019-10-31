@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(IT2)
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "-O0 -fprofile-arcs -ftest-coverage")
+set(CMAKE_CXX_FLAGS "-fPIC -O0 -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 
 set(EXEC_NAME test.exe)

@@ -14,12 +14,9 @@ stages:
   - coverage
   - valgrind
 
-install: skip
-script: skip
 
 jobs:
   include:
-    - stage: lint
       before_install:
         - sudo apt install cppcheck
         - cppcheck ./$DIR
