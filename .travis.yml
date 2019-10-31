@@ -1,57 +1,49 @@
-addons:
-  apt:
-    update: true
-
 os: linux
 language: cpp
 
-env: DIR=IT2
+addons:
+  apt:
+    update: true
+    packages:
+      - cppcheck
+      - valgrind
+      - cmake
+      - build-essential
+      - libgtest-dev
+      - lcov
 
-stages:
-  - lint
-  - build
-  - unit_tests
-  - coverage
-  - valgrind
+before_install:
+  # setup gtest
+  - cd /usr/src/gtest 
+  - sudo cmake .
+  - sudo make
+  - sudo cp *.a /usr/lib
+  - cd -
+
+before_script:
+  - cd IT2
+  - cmake .
+  - cmake --build .
 
 jobs:
   include:
-    - stage: lint
-      install:
-        - sudo apt install cppcheck
-      script:
-        - cppcheck ./$DIR
+    - stage: ci
+      name: lint
+      script: cppcheck -j4 --inconclusive --error-exitcode=1 .
 
-    - stage: build
-      install:
-      - sudo apt update
-      - sudo apt install build-essential
-      - sudo apt install valgrind
-      - sudo apt install cmake
-        # setup gtest
+      name: unit_tests
       script:
-      - sudo apt install libgtest-dev 
-      - cd /usr/src/gtest 
-      - sudo cmake .
-      - sudo make
-      - sudo cp *.a /usr/lib
-      - cd -
-      
-
-    - stage: unit_tests
-      script:
-      - cd $DIR
-      - cmake .
-      - cmake --build .
-      - ls
       - ./test.exe
 
-    - stage: coverage
+
+
       script:
       - cd $DIR
       - cd CMakeFiles/test.exe.dir
       - echo "Покрытие:"
       - gcov test.cpp | head -n 2
 
-      after_success: bash <(curl -s https://codecov.io/bash)
+      after_success:
+      - lcov -d . -c -o coverage.info
+      - lcov bash <(curl -s https://codecov.io/bash) -f coverage.info
 
