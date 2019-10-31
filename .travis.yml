@@ -8,19 +8,17 @@ language: cpp
 stages:
   - cppcheck
 
-env:
-  - DIR=IT1
-  - DIR=IT2
-
 install: skip
 script: skip
-
 
 
 jobs:
   include:
     - stage: cppcheck
-      before_install:
+      env:
+        - DIR=IT1
+        - DIR=IT2
+      install: 
         - sudo apt install cppcheck
         - cppcheck ./$(DIR)
 
