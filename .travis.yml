@@ -41,12 +41,14 @@ jobs:
       - cmake --build .
 
     - stage: unit_tests
-      ./test.exe
+      script:
+      - ./test.exe
+
     - stage: coverage
+      script:
       - cd CMakeFiles/test.exe.dir
       - echo "Покрытие:"
       - gcov test.cpp | head -n 2
 
 
-    - valgrind: 
 
