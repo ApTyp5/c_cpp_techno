@@ -8,7 +8,7 @@ language: cpp
 env: DIR=IT2
 
 stages:
-  - test
+  - lint
   - build
   - unit_tests
   - coverage
@@ -17,7 +17,7 @@ stages:
 
 jobs:
   include:
-    - stage: test
+    - stage: lint
       before_install:
         - sudo apt install cppcheck
         - cppcheck ./$DIR
