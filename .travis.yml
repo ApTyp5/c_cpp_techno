@@ -21,7 +21,7 @@ jobs:
   include:
     - stage: cppcheck
       before_install:
-        - sudo apt install cppckeck
+        - sudo apt install cppcheck
         - cppcheck ./$(DIR)
 
     - stage: 
