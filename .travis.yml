@@ -9,6 +9,9 @@ env:
     - DIR=IT1
     - DIR=IT2
 
+install: skip
+script: skip
+
 
 
 jobs:
