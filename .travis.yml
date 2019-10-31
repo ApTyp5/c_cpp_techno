@@ -5,37 +5,30 @@ addons:
 os: linux
 language: cpp
 
+env:
+  - DIR=IT1
+  - DIR=IT2
+
 stages:
   - cppcheck
+  - build
 
-env:
-  matrix:
-    - DIR=IT1
-    - DIR=IT2
-
-
-jobs:
-  include:
-    - stage: cppcheck
-      install:
-        - sudo apt install cppcheck
-        - cppcheck ./$(DIR)
-
-    - stage: 
-      install:
-          - sudo apt update
-          - sudo apt install build-essential
-          - sudo apt install valgrind
-          - sudo apt install cmake
-          - sudo apt install libgtest-dev 
-          - cd /usr/src/gtest 
-          - sudo cmake .
-          - sudo make
-          - sudo cp *.a /usr/lib
-          - cd -
-          - cd $DIR
-          - cmake .
-          - cmake --build .
+install:
+  - sudo apt update
+  - sudo apt install build-essential
+  - sudo apt install valgrind
+  - sudo apt install cmake
+  # setup gtest
+  - sudo apt install libgtest-dev 
+  - cd /usr/src/gtest 
+  - sudo cmake .
+  - sudo make
+  - sudo cp *.a /usr/lib
+  - cd -
+  # build all 
+  - cd $DIR
+  - cmake .
+  - cmake --build .
 
 
 
