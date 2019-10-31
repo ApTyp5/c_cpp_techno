@@ -36,13 +36,13 @@ jobs:
       - sudo make
       - sudo cp *.a /usr/lib
       - cd -
-      - cd $DIR
-      - cmake .
-      - cmake --build .
+      
 
     - stage: unit_tests
       script:
       - cd $DIR
+      - cmake .
+      - cmake --build .
       - ls
       - ./test.exe
 
@@ -53,5 +53,5 @@ jobs:
       - echo "Покрытие:"
       - gcov test.cpp | head -n 2
 
-
+      after_success: bash <(curl -s https://codecov.io/bash)
 
