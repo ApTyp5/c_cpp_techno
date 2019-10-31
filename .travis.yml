@@ -23,7 +23,7 @@ jobs:
     - stage: lint
       before_install:
         - sudo apt install cppcheck
-        - cppcheck ./$(DIR)
+        - cppcheck ./$DIR
 
     - stage: install
       install:
