@@ -27,11 +27,11 @@ before_script:
 
 jobs:
   include:
-    - stage: ci
-      name: lint
+    - stage: "ci"
+      name: "linter"
       script: cppcheck -j4 --inconclusive --error-exitcode=1 .
 
-      name: unit_tests
+      name: "unit_tests"
       script:
       - ./test.exe
 
