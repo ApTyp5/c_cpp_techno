@@ -10,9 +10,11 @@ env:
   - DIR=IT2
 
 stages:
+  - install
   - cppcheck
   - build
 
+stage: install
 install:
   - sudo apt update
   - sudo apt install build-essential
@@ -30,6 +32,7 @@ install:
   - cmake .
   - cmake --build .
 
+ script: skip
 
 
         
