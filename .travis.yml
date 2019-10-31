@@ -17,6 +17,7 @@ jobs:
     - stage: cppcheck
       env:
         - DIR=IT1
+      env: 
         - DIR=IT2
       install: 
         - sudo apt install cppcheck
