@@ -3,10 +3,9 @@ addons:
     update: true
 
 os: linux
-language: c++
+language: cpp
 
 env:
-  global:
     - DIR=IT1
     - DIR=IT2
 
@@ -16,7 +15,8 @@ jobs:
   include:
     - stage: cppcheck
       before_install:
-        - cppcheck $(DIR)
+        - sudo apt install cppckeck
+        - cppcheck ./$(DIR)
 
     - stage: 
       install:
