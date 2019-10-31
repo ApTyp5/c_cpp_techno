@@ -5,9 +5,12 @@ addons:
 os: linux
 language: cpp
 
+stages:
+  - cppcheck
+
 env:
-    - DIR=IT1
-    - DIR=IT2
+  - DIR=IT1
+  - DIR=IT2
 
 install: skip
 script: skip
