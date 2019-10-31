@@ -5,6 +5,8 @@ addons:
 os: linux
 language: cpp
 
+env: DIR=IT2
+
 stages:
   - lint
   - install
@@ -13,12 +15,13 @@ stages:
   - coverage
   - valgrind
 
+
 jobs:
   include:
     - stage: lint
       before_install:
         - sudo apt install cppcheck
-        - cppcheck ./IT2
+        - cppcheck ./$(DIR)
 
     - stage: install
       install:
