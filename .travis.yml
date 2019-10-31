@@ -35,14 +35,6 @@ jobs:
       script:
       - ./test.exe
 
-
-
-      script:
-      - cd $DIR
-      - cd CMakeFiles/test.exe.dir
-      - echo "Покрытие:"
-      - gcov test.cpp | head -n 2
-
       after_success:
       - lcov -d . -c -o coverage.info
       - lcov bash <(curl -s https://codecov.io/bash) -f coverage.info
