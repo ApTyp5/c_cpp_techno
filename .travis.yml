@@ -9,7 +9,6 @@ env: DIR=IT2
 
 stages:
   - lint
-  - install
   - build
   - unit_tests
   - coverage
@@ -25,7 +24,7 @@ jobs:
         - sudo apt install cppcheck
         - cppcheck ./$DIR
 
-    - stage: install
+    - stage: build
       install:
       - sudo apt update
       - sudo apt install build-essential
@@ -38,9 +37,6 @@ jobs:
       - sudo make
       - sudo cp *.a /usr/lib
       - cd -
- 
-    - stage: build
-      before_script:
       - cd $DIR
       - cmake .
       - cmake --build .
