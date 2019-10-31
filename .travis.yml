@@ -6,32 +6,37 @@ os: linux
 language: c++
 
 env:
-  - DIR=IT1
-  - DIR=IT2
+  global:
+    - DIR=IT1
+    - DIR=IT2
 
-before_install:
+
 
 jobs:
   include:
-    - stage: set_environment
+    - stage: cppcheck
       before_install:
-        - sudo apt update
-        - sudo apt install build-essential
-        - sudo apt install valgrind
-        - sudo apt install cmake
-        - sudo apt install libgtest-dev 
-        - cd /usr/src/gtest 
-        - sudo cmake .
-        - sudo make
-        - sudo cp *.a /usr/lib
-        - cd -
+        - cppcheck $(DIR)
 
-    - stage: build_needed_dir
-      before_script:
-        - cd $DIR
-        - cmake .
-        - cmake --build .
+    - stage: 
+      install:
+          - sudo apt update
+          - sudo apt install build-essential
+          - sudo apt install valgrind
+          - sudo apt install cmake
+          - sudo apt install libgtest-dev 
+          - cd /usr/src/gtest 
+          - sudo cmake .
+          - sudo make
+          - sudo cp *.a /usr/lib
+          - cd -
+          - cd $DIR
+          - cmake .
+          - cmake --build .
 
+
+
+        
           #    stage: st3
           #        script:
           #         - valgrind --leak-check=full -q ./test.exe
@@ -39,4 +44,4 @@ jobs:
           #         - echo "Покрытие:"
           #         - gcov test.cpp | head -n 2
 
- 
+
