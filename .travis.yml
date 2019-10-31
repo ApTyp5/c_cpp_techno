@@ -8,21 +8,16 @@ language: cpp
 stages:
   - cppcheck
 
-install: skip
-script: skip
+env:
+  matrix:
+    - DIR=IT1
+    - DIR=IT2
 
 
 jobs:
   include:
     - stage: cppcheck
-      env:
-        - DIR=IT1
       install:
-        - sudo apt install cppcheck
-        - cppcheck ./$(DIR)
-      env: 
-        - DIR=IT2
-      install: 
         - sudo apt install cppcheck
         - cppcheck ./$(DIR)
 
