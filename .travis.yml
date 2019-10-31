@@ -14,6 +14,9 @@ stages:
   - coverage
   - valgrind
 
+install: ls
+script: ls
+
 
 jobs:
   include:
