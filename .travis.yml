@@ -42,7 +42,9 @@ jobs:
 
     - stage: unit_tests
       script:
-      - ./$DIR/test.exe
+      - cd $DIR
+      - ls
+      - ./test.exe
 
     - stage: coverage
       script:
