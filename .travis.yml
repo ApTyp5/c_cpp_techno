@@ -38,7 +38,7 @@ before_script:
 
 script:
     - echo "==========>   Unit testing   <=========="
-    - make test.exe
+    - ./test.exe
 
 # Расчёт покрытия
     - echo "==========>   Coverage   <=========="
