@@ -4,12 +4,11 @@ addons:
     apt:
         update: true
         packages:
-          - build-essential
+          - cppcheck
           - valgrind
           - cmake
           - libgtest-dev
           - lcov
-          - gcov
 
 env:
     - DIR=IT1
