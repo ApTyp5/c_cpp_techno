@@ -1,11 +1,8 @@
-//
-// Created by arthur on 18.10.2019.
-//
-
-#ifndef IT2_ERRCODES_H
-#define IT2_ERRCODES_H
+#pragma once
 
 #define EXIT_NULL_REC   -1
 #define EXIT_ZERO_SIZ   -2
+#define EXIT_ALLOC_ERR  -3
+#define NULL_GIVEN      -4
 
-#endif //IT2_ERRCODES_H
+

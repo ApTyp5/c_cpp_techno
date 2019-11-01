@@ -1,30 +1,24 @@
-//
-// Created by arthur on 18.10.2019.
-//
-
-
-
-#include "parallelAvg.h"
+#include "parallel_avg.h"
 
 typedef struct summerArgs summerArgs;
 struct summerArgs{
-    littleVector_t *vectors;
+    const little_vector_t *vectors;
     size_t size;
-    bigVector_t sum;
+    big_vector_t sum;
 };
 
-// Не лето, но сумматор
+// Cумматор
 void *summer(void *sumArgs) {
-    auto *summerArgs_ptr    = (summerArgs *)sumArgs;
-    littleVector_t *vectors = summerArgs_ptr->vectors;
-    size_t size             = summerArgs_ptr->size;
+    auto *summerArgs_ptr     = (summerArgs *)sumArgs;
+    const little_vector_t *const vectors = summerArgs_ptr->vectors;
+    size_t size              = summerArgs_ptr->size;
 
-    bigVector_t sum = {0};
+    big_vector_t sum = {0};
     for (size_t i = 0; i < size; i++)
-        for (size_t j = 0; j < VecSize; j++)
+        for (size_t j = 0; j < vec_size; j++)
             sum[j] += vectors[i][j];
 
-    for (size_t j = 0; j < VecSize; j++){
+    for (size_t j = 0; j < vec_size; j++){
         summerArgs_ptr->sum[j] = sum[j];
     }
 
@@ -44,15 +38,16 @@ size_t find_core_num(){
 }
 
 void start_all_threads(summerArgs args[], pthread_t threads[],
-                              littleVector_t vectors[], size_t core_num,
-                              size_t el_per_core, size_t size);
+                       const little_vector_t * vectors, size_t core_num,
+                       size_t el_per_core, size_t size);
 
 void wait_all_threads(pthread_t threads[], size_t core_num);
 
-inline void count_answer(littleVector_t avg_vector, summerArgs args[],
-                        size_t core_num, size_t size);
+inline void count_answer(little_vector_t avg_vector, summerArgs args[],
+                         size_t core_num, size_t size);
 
-int parallelAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_t size)
+int parallel_avg_vector(little_vector_t avg_vector,
+                        const little_vector_t *const vectors, size_t size)
 {
     if (unlikely((avg_vector == nullptr)
                   || vectors == nullptr)) return EXIT_NULL_REC;
@@ -72,12 +67,13 @@ int parallelAvgVector(littleVector_t avg_vector, littleVector_t vectors[], size_
     start_all_threads(args, threads, vectors,core_num, el_per_core, size);
     wait_all_threads(threads, core_num);
     count_answer(avg_vector, args, core_num, size);
+
     return EXIT_SUCCESS;
 }
 
 
 inline void start_all_threads(summerArgs args[], pthread_t threads[],
-                              littleVector_t vectors[], size_t core_num,
+                              const little_vector_t * vectors, size_t core_num,
                               size_t el_per_core, size_t size){
 
     for (size_t i = 0; i < core_num - 1; i++){
@@ -98,16 +94,16 @@ inline void wait_all_threads(pthread_t threads[], size_t core_num){
     }
 }
 
-inline void count_answer(littleVector_t avg_vector, summerArgs args[],
-                        size_t core_num, size_t size){
-    bigVector_t sum = {0};
+inline void count_answer(little_vector_t avg_vector, summerArgs args[],
+                         size_t core_num, size_t size){
+    big_vector_t sum = {0};
     for (size_t i = 0; i < core_num; i++)
-        for (size_t j = 0; j < VecSize; j++)
+        for (size_t j = 0; j < vec_size; j++)
             sum[j] += args[i].sum[j];
 
-    for (size_t j = 0; j < VecSize; j++){
+    for (size_t j = 0; j < vec_size; j++){
         sum[j] /= size;
-        avg_vector[j] = (Vector_lt) sum[j];
+        avg_vector[j] = (my_vector_lt) sum[j];
     }
 }
 
