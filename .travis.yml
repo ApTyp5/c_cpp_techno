@@ -1,6 +1,9 @@
 os: linux
 language: cpp
 
+env:
+ - DIR=IT1
+
 addons:
   apt:
     update: true
