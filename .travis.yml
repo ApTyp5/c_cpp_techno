@@ -15,21 +15,36 @@ env:
     - DIR=IT2
 
 before_script:
-      # Установка gtest
+# Установка gtest
     - cd /usr/src/gtest 
     - sudo cmake .
     - sudo make
     - sudo cp *.a /usr/lib
+    - cd -
+
+# Проверка cppcheck 
+# (На стадии before_script отличный от 0 код возврата остановит билд)
+    - cppcheck -j4 --error-exitcode=1 *.cpp *.h
+
+# Сборка
+    - cd $DIR
+    - cmake .
+    - cmake --build .
+ 
 
 script:
-    - cd -
-    - cd $DIR
-    - cmake CMakeLists.txt
+# unit тестирование
     - make test.exe
-      # Запуск тестов
-    - valgrind --leak-check=full -q ./test.exe
-      # Показ покрытия
+
+# Расчёт покрытия
     - cd CMakeFiles/test.exe.dir
     - echo "Покрытие:"
     - gcov test.cpp | head -n 2
+    - lcov -d . -c -o cov.info
+    - bash <(curl -s https://codecov.io/bash) -f cov.info
+
+
+# Проверка утечек памяти тестов
+    - valgrind --leak-check=full ./app.exe < func_tests/test1 1>/dev/null 2>1
+
 
