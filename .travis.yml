@@ -3,18 +3,20 @@ language: c++
 addons:
     apt:
         update: true
+        packages:
+          - build-essential
+          - valgrind
+          - cmake
+          - libgtest-dev
+          - lcov
+          - gcov
 
 env:
     - DIR=IT1
     - DIR=IT2
 
-before_install:
-    - sudo apt update
-    - sudo apt install build-essential
-    - sudo apt install valgrind
-    - sudo apt install cmake
+before_script:
       # Установка gtest
-    - sudo apt install libgtest-dev 
     - cd /usr/src/gtest 
     - sudo cmake .
     - sudo make
