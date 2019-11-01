@@ -13,6 +13,8 @@ addons:
 env:
     - DIR=IT1
     - DIR=IT2
+    global:
+        CODECOV_TOKEN="01abb78d-7b9d-4213-baec-4d51c880f9bc"
 
 before_script:
     - echo "Установка gtest"
@@ -42,6 +44,7 @@ script:
     - gcov test.cpp | head -n 2
     - lcov -d . -c -o cov.info
     - bash <(curl -s https://codecov.io/bash) -f cov.info
+    - cd -
 
 
 # Проверка утечек памяти тестов
