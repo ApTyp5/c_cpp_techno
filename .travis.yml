@@ -21,14 +21,13 @@ before_script:
     - sudo make
     - sudo cp *.a /usr/lib
     - cd -
-    - ls
+    - cd $DIR
 
 # (На стадии before_script отличный от 0 код возврата остановит билд)
     - echo "Cppcheck"
     - cppcheck -j4 --error-exitcode=1 *.cpp *.h
 
     - echo "Build"
-    - cd $DIR
     - cmake .
     - cmake --build .
  
