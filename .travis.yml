@@ -14,7 +14,7 @@ env:
     - DIR=IT1
     - DIR=IT2
     global:
-        CODECOV_TOKEN="01abb78d-7b9d-4213-baec-4d51c880f9bc"
+    - CODECOV_TOKEN="01abb78d-7b9d-4213-baec-4d51c880f9bc"
 
 before_script:
     - echo "==========>   Установка gtest   <=========="
