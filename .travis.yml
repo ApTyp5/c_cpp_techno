@@ -17,7 +17,7 @@ env:
         CODECOV_TOKEN="01abb78d-7b9d-4213-baec-4d51c880f9bc"
 
 before_script:
-    - echo "Установка gtest"
+    - echo "==========>   Установка gtest   <=========="
     - cd /usr/src/gtest 
     - sudo cmake .
     - sudo make
@@ -26,20 +26,20 @@ before_script:
     - cd $DIR
 
 # (На стадии before_script отличный от 0 код возврата остановит билд)
-    - echo "Cppcheck"
+    - echo "==========>   Cppcheck   <=========="
     - cppcheck -j4 --error-exitcode=1 *.cpp *.h
 
-    - echo "Build"
+    - echo "==========>   Build   <=========="
     - cmake .
     - cmake --build .
  
 
 script:
-    - echo "unit testing"
+    - echo "==========>   Unit testing   <=========="
     - make test.exe
 
 # Расчёт покрытия
-    - echo "Coverage:"
+    - echo "==========>   Coverage   <=========="
     - cd CMakeFiles/test.exe.dir
     - gcov test.cpp | head -n 2
     - lcov -d . -c -o cov.info
