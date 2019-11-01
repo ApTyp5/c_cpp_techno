@@ -48,6 +48,7 @@ script:
     - lcov --list coverage.info
     - bash <(curl -s https://codecov.io/bash) -f coverage.info
     - cd -
+    - ls
 
 
 # Проверка утечек памяти тестов
