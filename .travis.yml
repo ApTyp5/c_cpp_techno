@@ -15,29 +15,27 @@ addons:
       - libgtest-dev
       - lcov
 
-before_install:
+before_scrit:
   # setup gtest
   - cd /usr/src/gtest 
   - sudo cmake .
   - sudo make
   - sudo cp *.a /usr/lib
   - cd -
-
-before_script:
   - cd IT2
   - cmake .
   - cmake --build .
 
 jobs:
   include:
-    - stage: "ci"
+    - stage: "lint"
       script: cppcheck -j4 --inconclusive --error-exitcode=1 .
      
-    - stage: "test"
+    - stage: "unit_test"
       script:
       - ./test.exe
 
-      after_success:
+    - stage: "coverage"
       - lcov -d . -c -o coverage.info
       - lcov bash <(curl -s https://codecov.io/bash) -f coverage.info
 
