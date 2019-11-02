@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ApTyp5/c_cpp_techno.svg?branch=IT2_v2)](https://travis-ci.org/ApTyp5/c_cpp_techno)<Paste>
   
-[![codecov](https://codecov.io/gh/ApTyp5/c_cpp_techno/branch/master/graph/badge.svg)](https://codecov.io/gh/ApTyp5/c_cpp_techno)
+[![codecov](https://codecov.io/gh/ApTyp5/c_cpp_techno/branch/IT2_v2/graph/badge.svg)](https://codecov.io/gh/ApTyp5/c_cpp_techno)
 
 ## Individual Task 1
   
