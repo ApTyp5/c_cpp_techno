@@ -3,6 +3,7 @@ language: c++
 
 addons:
     apt:
+        quite: true
         update: true
         packages:
           - cppcheck
@@ -51,6 +52,7 @@ script:
 
 
 # Проверка утечек памяти тестов
+    - echo "==========>   Unit tests   <=========="
     - valgrind --leak-check=full ./app.exe < func_tests/test1.txt 1>/dev/null
 
 
