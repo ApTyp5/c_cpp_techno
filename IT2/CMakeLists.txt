@@ -23,6 +23,7 @@ add_executable(${EXEC_NAME} main.cpp)
 target_link_libraries(${EXEC_NAME} dl)
 set_target_properties(${EXEC_NAME} PROPERTIES COMPILE_FLAGS "-O3 -DNDEBUG")
 
+
 # add test executable
 add_executable(${TEST_NAME} test.cpp)
 set_target_properties(${TEST_NAME} PROPERTIES COMPILE_FLAGS "-g3 -O0 -fprofile-arcs -ftest-coverage")

@@ -49,7 +49,10 @@ int parallel_avg_vector(little_vector_t avg_vector,
 
   // Считаем клоличество логических ядер процессра
   size_t core_num = find_core_num();
-  if (core_num <= 0) return EXIT_FAILURE;
+  if (core_num <= 0) {
+    return EXIT_FAILURE;
+  }
+
 
   // Почему бы и не воспользоваться массивами переменной длины,
   // количество ядер мало когда будет меньше ста
@@ -59,7 +62,14 @@ int parallel_avg_vector(little_vector_t avg_vector,
 
   start_all_threads(args, threads, vectors, core_num, el_per_core, size);
   wait_all_threads(threads, core_num);
-  count_answer(avg_vector, args, core_num);
+  if (unlikely(el_per_core == 0)) {
+    // Если У нас мало элементов, то ответ находится в последнем потоке
+    for (size_t i = 0; i < vec_size; i++){
+      avg_vector[i] = args[core_num - 1].ans[i];
+    }
+  } else {
+    count_answer(avg_vector, args, core_num);
+  }
 
   return EXIT_SUCCESS;
 }

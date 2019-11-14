@@ -24,10 +24,11 @@ int main() {
 
   int rc = try_load_lib(&parallel_lib);
 
-  parallel_avg_vector = (int (*)(my_vector_lt *, little_vector_t *, size_t))
-      (dlsym(parallel_lib, "parallel_avg_vector"));
-  //rc = (parallel_avg_vector == NULL) ? (EXIT_FUNC_LOAD_ERR) : (EXIT_SUCCESS);
-  std::cout << dlerror();
+  if (!rc){
+    parallel_avg_vector = (int (*)(my_vector_lt *, little_vector_t *, size_t))
+        (dlsym(parallel_lib, "parallel_avg_vector"));
+    rc = (parallel_avg_vector == NULL) ? (EXIT_FUNC_LOAD_ERR) : (EXIT_SUCCESS);
+  }
 
   if (!rc) rc = user_input(&vector_arr, &n);
   if (!rc) rc = (*parallel_avg_vector)(answer, vector_arr, n);
