@@ -1,31 +1,58 @@
-addons:
-    apt:
-        update: true
-
-
+os: linux
 language: c++
 
-before_install:
-      # Идём в директорию IT1
-    - cd IT1
-    - sudo apt update
-    - sudo apt install valgrind
-    - sudo apt install cmake
-      # Установка gtest
-    - sudo apt install libgtest-dev 
+addons:
+    apt:
+        quite: true
+        update: true
+        packages:
+          - cppcheck
+          - valgrind
+          - cmake
+          - libgtest-dev
+          - lcov
+
+env:
+    global:
+    - CODECOV_TOKEN="01abb78d-7b9d-4213-baec-4d51c880f9bc"
+    jobs:
+    - DIR=IT1
+    - DIR=IT2
+
+before_script:
+    - echo "==========>   Установка gtest   <=========="
     - cd /usr/src/gtest 
-    - sudo cmake CMakeLists.txt || (cat CMakeFiles/CMakeError.log && CMakeFiles/CMakeOutput.log)
+    - sudo cmake .
     - sudo make
     - sudo cp *.a /usr/lib
     - cd -
+    - cd $DIR
+
+# (На стадии before_script отличный от 0 код возврата остановит билд)
+    - echo "==========>   Cppcheck   <=========="
+    - cppcheck -j4 --error-exitcode=1 *.cpp *.h
+
+    - echo "==========>   Build   <=========="
+    - cmake .
+    - cmake --build .
+ 
 
 script:
-    - cmake CMakeLists.txt
-    - ls
-    - make 
-    - valgrind --leak-check=full -q ./run_tests.exe
+    - echo "==========>   Unit testing   <=========="
+    - ./test.exe
 
-after_script:
-    - make clean
+# Расчёт покрытия
+    - echo "==========>   Coverage   <=========="
+
+    - cd CMakeFiles/test.exe.dir
+    - lcov --directory . --capture --output-file coverage.info
+    - lcov --list coverage.info
+    - bash <(curl -s https://codecov.io/bash) -f coverage.info
+    - cd -
+
+
+# Проверка утечек памяти тестов
+    - echo "==========>   Unit tests   <=========="
+    - valgrind --leak-check=full ./app.exe < func_tests/test1.txt 1>/dev/null
 
 
