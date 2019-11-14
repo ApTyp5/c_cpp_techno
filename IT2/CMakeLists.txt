@@ -13,6 +13,7 @@ include_directories(${GTEST_INCLUDE_DIRS})
 
 # Create static lib for simpleAvg
 add_library(simpleAvg STATIC simple_avg.cpp)
+set_target_properties(simpleAvg PROPERTIES COMPILE_FLAGS "-fPIC")
 
 # Create shared lib for parallelAvg
 add_library(parallelAvg SHARED parallel_avg.cpp)
