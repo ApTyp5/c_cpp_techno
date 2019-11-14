@@ -38,6 +38,7 @@ void wait_all_threads(pthread_t threads[], size_t core_num);
 
 inline void count_answer(little_vector_t avg_vector, summerArgs args[], size_t core_num);
 
+extern "C" {
 int parallel_avg_vector(little_vector_t avg_vector,
                         const little_vector_t *const vectors, size_t size) {
   if (unlikely((avg_vector == nullptr)
@@ -61,6 +62,7 @@ int parallel_avg_vector(little_vector_t avg_vector,
   count_answer(avg_vector, args, core_num);
 
   return EXIT_SUCCESS;
+}
 }
 
 inline void start_all_threads(summerArgs args[], pthread_t threads[],

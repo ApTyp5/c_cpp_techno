@@ -12,6 +12,9 @@
 
 #define MAX_CORES   100
 
+extern "C" {
 int parallel_avg_vector(little_vector_t avg_vector,
                         const little_vector_t *vectors, size_t size);
+};
+
 

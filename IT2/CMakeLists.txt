@@ -16,10 +16,11 @@ add_library(simpleAvg STATIC simple_avg.cpp)
 
 # Create shared lib for parallelAvg
 add_library(parallelAvg SHARED parallel_avg.cpp)
+target_link_libraries(parallelAvg pthread simpleAvg)
 
 # add product executable
 add_executable(${EXEC_NAME} main.cpp)
-target_link_libraries(${EXEC_NAME} parallelAvg pthread)
+target_link_libraries(${EXEC_NAME} dl)
 set_target_properties(${EXEC_NAME} PROPERTIES COMPILE_FLAGS "-O3 -DNDEBUG")
 
 # add test executable
@@ -34,4 +35,4 @@ target_link_libraries(${TEST_NAME} ${GTEST_LIBRARIES} pthread)
 add_executable(${EXPERIMENT_NAME} experiment.cpp)
 target_link_libraries(${EXPERIMENT_NAME} simpleAvg)
 target_link_libraries(${EXPERIMENT_NAME} parallelAvg)
-target_link_libraries(${EXPERIMENT_NAME} pthread)
+
