@@ -5,6 +5,7 @@ set(CMAKE_CXX_OUTPUT_EXTENSION_REPLACE 1)
 
 set(TEST_NAME test.exe)
 set(EXEC_NAME app.exe)
+set(EXPERIMENT_NAME experiment.exe)
 
 # Locate GTest
 find_package(GTest REQUIRED)
@@ -29,3 +30,8 @@ target_link_libraries(${TEST_NAME} simpleAvg)
 target_link_libraries(${TEST_NAME} parallelAvg)
 target_link_libraries(${TEST_NAME} ${GTEST_LIBRARIES} pthread)
 
+# add experiment executable
+#add_executable(${EXPERIMENT_NAME} experiment.cpp)
+#set_target_properties(${EXPERIMENT_NAME} PROPERTIES COMPILE_FLAGS "-O3 -DNDEBUG")
+#target_link_libraries(${TEST_NAME} simpleAvg)
+#target_link_libraries(${TEST_NAME} parallelAvg)

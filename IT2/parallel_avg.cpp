@@ -4,23 +4,16 @@ typedef struct summerArgs summerArgs;
 struct summerArgs {
   const little_vector_t *vectors;
   size_t size;
-  big_vector_t sum;
+  little_vector_t ans;
 };
 
 // Cумматор
 void *summer(void *sumArgs) {
   auto *summerArgs_ptr = (summerArgs *) sumArgs;
-  const little_vector_t *const vectors = summerArgs_ptr->vectors;
+  const little_vector_t *vectors = summerArgs_ptr->vectors;
   size_t size = summerArgs_ptr->size;
 
-  big_vector_t sum = {0};
-  for (size_t i = 0; i < size; i++)
-    for (size_t j = 0; j < vec_size; j++)
-      sum[j] += vectors[i][j];
-
-  for (size_t j = 0; j < vec_size; j++) {
-    summerArgs_ptr->sum[j] = sum[j];
-  }
+  simple_avg_vector(summerArgs_ptr->ans, vectors, size);
 
   pthread_exit(nullptr);
 }
@@ -43,8 +36,7 @@ void start_all_threads(summerArgs args[], pthread_t threads[],
 
 void wait_all_threads(pthread_t threads[], size_t core_num);
 
-inline void count_answer(little_vector_t avg_vector, summerArgs args[],
-                         size_t core_num, size_t size);
+inline void count_answer(little_vector_t avg_vector, summerArgs args[], size_t core_num);
 
 int parallel_avg_vector(little_vector_t avg_vector,
                         const little_vector_t *const vectors, size_t size) {
@@ -66,7 +58,7 @@ int parallel_avg_vector(little_vector_t avg_vector,
 
   start_all_threads(args, threads, vectors, core_num, el_per_core, size);
   wait_all_threads(threads, core_num);
-  count_answer(avg_vector, args, core_num, size);
+  count_answer(avg_vector, args, core_num);
 
   return EXIT_SUCCESS;
 }
@@ -93,17 +85,17 @@ inline void wait_all_threads(pthread_t threads[], size_t core_num) {
   }
 }
 
-inline void count_answer(little_vector_t avg_vector, summerArgs args[],
-                         size_t core_num, size_t size) {
-  big_vector_t sum = {0};
-  for (size_t i = 0; i < core_num; i++)
-    for (size_t j = 0; j < vec_size; j++)
-      sum[j] += args[i].sum[j];
+inline void count_answer(little_vector_t avg_vector, summerArgs args[], size_t core_num) {
+  little_vector_t vectors[core_num];
 
-  for (size_t j = 0; j < vec_size; j++) {
-    sum[j] /= size;
-    avg_vector[j] = (my_vector_lt) sum[j];
+  // Копируем получившиеся векторы в массив
+  for (size_t i = 0; i < core_num; i++) {
+    for (size_t j = 0; j < vec_size; j++) {
+      vectors[i][j] = args[i].ans[j];
+    }
   }
+
+  simple_avg_vector(avg_vector, vectors, core_num);
 }
 
 
