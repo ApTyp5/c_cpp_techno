@@ -17,6 +17,7 @@ add_library(simpleAvg STATIC simple_avg.cpp)
 # Create shared lib for parallelAvg
 add_library(parallelAvg SHARED parallel_avg.cpp)
 target_link_libraries(parallelAvg pthread simpleAvg)
+set_target_properties(parallelAvg PROPERTIES COMPILE_FLAGS "-fPIC")
 
 # add product executable
 add_executable(${EXEC_NAME} main.cpp)
