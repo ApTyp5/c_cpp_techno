@@ -33,7 +33,7 @@ TEST(compareTest, sizes_10_1000) {
     simple_avg_vector(ans1, arr, size);
     parallel_avg_vector(ans2, arr, size);
     for (size_t i = 0; i < vec_size; i++) {
-      ASSERT_FLOAT_EQ(ans1[i], ans2[i]);
+      ASSERT_FLOAT_EQ(ans1[i], ans2[i]) << "size = " << i;
     }
 
     free(arr);
