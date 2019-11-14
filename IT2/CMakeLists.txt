@@ -31,7 +31,7 @@ target_link_libraries(${TEST_NAME} parallelAvg)
 target_link_libraries(${TEST_NAME} ${GTEST_LIBRARIES} pthread)
 
 # add experiment executable
-#add_executable(${EXPERIMENT_NAME} experiment.cpp)
-#set_target_properties(${EXPERIMENT_NAME} PROPERTIES COMPILE_FLAGS "-O3 -DNDEBUG")
-#target_link_libraries(${TEST_NAME} simpleAvg)
-#target_link_libraries(${TEST_NAME} parallelAvg)
+add_executable(${EXPERIMENT_NAME} experiment.cpp)
+target_link_libraries(${EXPERIMENT_NAME} simpleAvg)
+target_link_libraries(${EXPERIMENT_NAME} parallelAvg)
+target_link_libraries(${EXPERIMENT_NAME} pthread)
